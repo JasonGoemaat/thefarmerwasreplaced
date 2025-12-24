@@ -2,8 +2,11 @@
 # Drone will manage column until everything is harvestable.
 # Main drone waits for drone count to go to 0, then harvests and restarts
 
-sunflowers = 2 # sunflower rows above pumpkins
-mix = 2 # mix of carrots/trees above sunflowers
+change_hat(Hats.Brown_Hat)
+clear()
+
+sunflowers = 4 # sunflower rows above pumpkins
+mix = 4 # mix of carrots/trees above sunflowers
 pumpkins = min(max_drones(), get_world_size() - sunflowers - mix)
 grass = max(0, get_world_size() - pumpkins - sunflowers - mix) # remaining is grass at top
 flag_water = True
