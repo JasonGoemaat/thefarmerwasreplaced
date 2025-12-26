@@ -1,6 +1,7 @@
+special_item = Items.Weird_Substance # None, Items.Fertilizer, Items.Weird_Substance
 clear()
 change_hat(Hats.Brown_Hat)
-sunflower_columns = 5
+sunflower_columns = 10
 preferences = []
 for i in range(get_world_size()):
 	for j in range(get_world_size()):
@@ -15,6 +16,9 @@ def do_plant(entity):
 		harvest()
 	if get_entity_type() != entity:
 		plant(entity)
+		if (get_pos_x() % 3) == 1 and (get_pos_y() % 3) == 1:
+			use_item(Items.Fertilizer)
+			
 	if get_water() < 0.75:
 		use_item(Items.Water)
 
@@ -28,6 +32,7 @@ def get_entity():
 	return preferences[index]
 
 def do_plot():
+	global special_item
 	entity = get_entity()
 	if get_water() < 0.5 and entity != Entities.Grass:
 		use_item(Items.Water)
@@ -39,14 +44,14 @@ def do_plot():
 			till()
 		return
 	if entity == Entities.Bush:
-		if get_ground_type() != Grounds.Grassland:
-			till()
 		plant(Entities.Bush)
 		return
 	if get_ground_type() != Grounds.Soil:
 		till()
 	plant(entity)
-
+	if special_item != None and (get_pos_x() % 3) == 1 and (get_pos_y() % 3) == 1:
+		use_item(special_item)
+		
 def do_column():
 	global preferences
 	while True:
