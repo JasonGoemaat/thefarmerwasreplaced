@@ -217,7 +217,7 @@ while loops < 1:
 		move(directions[direction])
 	if get_pos_x() == tx and get_pos_y() == ty:
 		treasure_count = treasure_count + 1
-		if treasure_count < 1:
+		if treasure_count < 301:
 			use_item(Items.Weird_Substance, substance)
 			quick_print("After", treasure_count, "runs you have", num_items(Items.Gold), "gold")
 			continue
