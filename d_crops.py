@@ -5,8 +5,8 @@ from __builtins__ import *
 clear()
 change_hat(Hats.Brown_Hat)
 
-grass = 10
-sunflowers = 5
+grass = 5
+sunflowers = 15
 mix = get_world_size() - grass - sunflowers
 
 def do_plant(entity):
