@@ -22,6 +22,30 @@ snake = [] # indexes into hamiltonian array of snake parts
 
 ax, ay = 0, 0
 
+def index_from_location(x, y):
+	if x == 0:
+		return y
+	if y == 0:
+		return 1024-x
+	if x % 2 == 0:
+		return 32 + (x-1)*31 + y-1
+	return 32 + x*31 - y
+	# column 0: 0-31
+	# column 1: 32-62
+	# column 2: 63-93
+	# column 3: 94-124
+	# column 4: 125-155
+	
+good = True
+for x in range(get_world_size()):
+	for y in range(get_world_size()):
+		index = index_from_location(x, y)
+		index2 = bylocation[x,y]
+		if index != index2:
+			good = False
+if not good:
+	print('bad!')
+
 def run():
 	def better_shortcut(shortcut):
 		# check if apple is between head and tail, and if
@@ -81,6 +105,8 @@ def run():
 		node = hamiltonian[index]
 		if index == apple_index:
 			apple_pos = measure()
+			if apple_pos == None:
+				break
 			apple_index = bylocation[apple_pos]
 			move(node["direction"])
 			continue
