@@ -108,7 +108,7 @@ def run():
 					# move east if won't overrun tail
 					if tail <= head or east < tail:
 						if not move(East):
-							print('UH OH!')
+							print('UH OH! snake_super4')
 							move(direction)
 						snake_start = snake_start + 1
 						continue

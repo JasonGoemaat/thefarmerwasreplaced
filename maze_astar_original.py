@@ -17,7 +17,7 @@ def get_index(x = None, y = None):
 clear()
 substance = get_world_size()
 substance = substance * 2**(num_unlocked(Unlocks.Mazes) - 1)
-print(substance, 'Weird_Substance per treasure')
+# print(substance, 'Weird_Substance per treasure')
 if num_items(Items.Weird_Substance) < substance:
 	print("NOT ENOUGH SUBSTANCE")
 	return
@@ -53,7 +53,7 @@ while True:
 			break # would repeat first ever move
 	move(directions[facing])
 	
-print("Explored map in ", counter, "moves")
+# quick_print("Explored map in ", counter, "moves")
 
 # 9380.1 seconds for 295 - FULL search
 def find_path(target_x, target_y):
@@ -188,7 +188,7 @@ def find_path_astar(target_x, target_y):
 	path = []
 	node = nodes[treasure_index]
 	while node[0] >= 0:
-		path.insert(0, node[1])
+		path.insert(0, node[1]) # TOO EXPENSIVE?
 		node = nodes[node[0]]
 	return path
 	
@@ -212,6 +212,7 @@ loops = 0
 while loops < 1:
 	tx, ty = measure()
 	path = find_path_astar(tx, ty)
+	path_length = len(path)
 	for direction in path:
 		update_map()
 		move(directions[direction])
@@ -219,11 +220,11 @@ while loops < 1:
 		treasure_count = treasure_count + 1
 		if treasure_count < 301:
 			use_item(Items.Weird_Substance, substance)
-			quick_print("After", treasure_count, "runs you have", num_items(Items.Gold), "gold")
+			# quick_print("After", treasure_count, "runs you have", num_items(Items.Gold), "gold")
 			continue
 		else:
 			harvest()
-			quick_print("DONE 300!  You have", num_items(Items.Gold), "gold!")
+			# quick_print("DONE 300!  You have", num_items(Items.Gold), "gold!")
 			break
 		if treasure_count == 0:
 			clear()

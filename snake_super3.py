@@ -110,7 +110,6 @@ def run():
 				# move east if won't overrun tail
 				if tail <= head or east_of[head] < tail:
 					if not move(East):
-						print('UH OH!')
 						move(direction)
 					snake.pop(0)
 					continue

@@ -1,6 +1,10 @@
-filename = "maze_astar"
+# filenames = ["maze_astar_original", "maze_astar_forward", "maze_astar_nopop"]
+# filenames = ["maze_astar_nopop","maze_astar_nopop_uns"]
+filenames = ["maze_astar_nopop"]
+
 sim_globals = {"MAX_LENGTH": 10}
-speedup = 1000
+speedup = 100000
+set_world_size(8)
 
 sim_items = {
 	Items.Carrot: 1000000,
@@ -16,6 +20,8 @@ sim_items = {
 	Items.Power: 10000
 }
 
-seconds = simulate(filename, Unlocks, sim_items, sim_globals, 0, speedup)
-quick_print(seconds)
+for filename in filenames:
+	seconds = simulate(filename, Unlocks, sim_items, sim_globals, 0, speedup)
+	quick_print(filename, seconds)
+
 quick_print("DONE")
